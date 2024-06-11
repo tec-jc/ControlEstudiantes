@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ControlEstudiantes extends JFrame {
+    // declaración de instancias para controles con nombre (generadas de forma automática)
     private JPanel jpPrincipal;
     private JTextField txtId;
     private JTextField txtCodigo;
@@ -32,18 +33,23 @@ public class ControlEstudiantes extends JFrame {
     private JTable tbEstudiantes;
     private ButtonGroup criterioBusqueda;
 
-    // instancias propias
+    // instancias propias (creadas por nosotros)
     ArrayList<Estudiante> listEstudiantes;
     Estudiante student;
     EstudianteBL estudianteBL = new EstudianteBL();
 
+    // declaración del método main, permite que clase sea ejecutable
     public static void main(String[] args) throws SQLException {
         new ControlEstudiantes();
     }
 
+    // Método constructor que llama a los métodos que inicializan la ventana y dan estado inicial al formulario.
+    // También están las sobrescrituras para dar la funcionalidad a los botones.
     public ControlEstudiantes() throws SQLException{
         inicializar();
         actualizarForm();
+
+        // funcionalidad del botón Nuevo
         btnNuevo.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -58,6 +64,8 @@ public class ControlEstudiantes extends JFrame {
                 btnCancelar.setEnabled(true);
             }
         });
+
+        // funcionalidad del botón Guardar
         btnGuardar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -76,6 +84,8 @@ public class ControlEstudiantes extends JFrame {
                 }
             }
         });
+
+        // funcionalidad del botón Salir
         btnSalir.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -83,6 +93,8 @@ public class ControlEstudiantes extends JFrame {
                 System.exit(0);
             }
         });
+
+        // funcionalidad del botón Cancelar
         btnCancelar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -94,6 +106,8 @@ public class ControlEstudiantes extends JFrame {
                 }
             }
         });
+
+        // funcionalidad del clic sobre la Tabla
         tbEstudiantes.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -117,6 +131,8 @@ public class ControlEstudiantes extends JFrame {
                 btnCancelar.setEnabled(true);
             }
         });
+
+        // funcionalidad del botón Modificar
         btnModificar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -136,6 +152,8 @@ public class ControlEstudiantes extends JFrame {
                 }
             }
         });
+
+        // funcionalidad del botón Eliminar
         btnEliminar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -151,6 +169,8 @@ public class ControlEstudiantes extends JFrame {
                 }
             }
         });
+
+        // funcionalidad del botón Buscar
         btnBuscar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -193,6 +213,7 @@ public class ControlEstudiantes extends JFrame {
         });
     }
 
+    // método para inicializar la ventana
     void inicializar(){
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(600, 700);
@@ -210,6 +231,7 @@ public class ControlEstudiantes extends JFrame {
         setVisible(true);
     }
 
+    // método para llenar la tabla con los datos obtenidos de la base de datos
     void llenarTabla(ArrayList<Estudiante> estudiantes){
         Object[] obj = new Object[5];
         listEstudiantes = new ArrayList<>();
@@ -228,6 +250,7 @@ public class ControlEstudiantes extends JFrame {
         tbEstudiantes.setModel(tm);
     }
 
+    // método para dar estado inicial al formulario
     void actualizarForm() throws SQLException {
         txtId.setText("");
         txtCodigo.setText("");

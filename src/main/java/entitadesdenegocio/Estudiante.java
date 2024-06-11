@@ -1,12 +1,14 @@
 package entitadesdenegocio;
 
 public class Estudiante {
+    // declaración de las propiedades de la entidad
     private int id;
     private String codigo;
     private String nombre;
     private String apellido;
     private String carrera;
 
+    // declaración de los constructores de la clase (constructor vacío y constructor parametrizado)
     public Estudiante(){}
 
     public Estudiante(int id, String codigo, String nombre, String apellido, String carrera) {
@@ -17,6 +19,7 @@ public class Estudiante {
         this.carrera = carrera;
     }
 
+    // declaración de los métodos Get y Set para cada propiedad
     public int getId() {
         return id;
     }

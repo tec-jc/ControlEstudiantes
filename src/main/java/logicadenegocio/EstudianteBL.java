@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EstudianteBL {
-
+    // métodos de la clase BL que devuelven la funcionalidad de los métodos de la clase DAL
     public int guardar(Estudiante estudiante) throws SQLException {
         return EstudianteDAL.guardar(estudiante);
     }
